@@ -4,5 +4,5 @@
   "repository": "https://github.com/kegriz/test-node",
   "logo": "",
   "keywords": ["node", "express", "postrgres", "heroku"],
-  "image": ""
+  "image": "heroku/nodejs"
 }
