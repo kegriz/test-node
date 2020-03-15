@@ -1,3 +1,3 @@
 # test-node
 
-REST API with Node.js + Express + Postgres
+REST API with Node.js + Express + Postgres on heroku

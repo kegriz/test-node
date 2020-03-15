@@ -1,0 +1,8 @@
+{
+  "name": "Heroku test",
+  "description": "REST API with Node.js + Express + Postgres on heroku",
+  "repository": "https://github.com/kegriz/test-node",
+  "logo": "",
+  "keywords": ["node", "express", "postrgres", "heroku"],
+  "image": ""
+}

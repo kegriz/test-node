@@ -15,9 +15,10 @@
     "url": "git+https://github.com/kegriz/test-node.git"
   },
   "keywords": [
-    "Node.js",
-    "Express",
-    "Postgres"
+    "node",
+    "express",
+    "postgres",
+    "heroku"
   ],
   "author": "Rafał Rudko",
   "license": "ISC",
