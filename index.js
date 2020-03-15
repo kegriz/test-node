@@ -21,7 +21,7 @@ var app = express();
 //   });
 // };
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 5000, () => {
   app.get("/", (req, res) => {
     res.send("express is working");
   });
