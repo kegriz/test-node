@@ -52,7 +52,7 @@ const addUser = async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query("INSERT into users(name) VALUES ($1)", [
-      req.params.userName
+      req.query.name
     ]);
     res.send(result.rowCount + " users added");
     client.release();
@@ -79,8 +79,8 @@ const deleteUser = async (req, res) => {
 express()
   .get("/", (req, res) => res.send("express is working"))
   .get("/users", getUsers)
-  .get("/user/:id", getUser)
-  .put("/user/:id", updateUser)
-  .post("/user/:userName", addUser)
-  .delete("/user/:id", deleteUser)
+  .post("/users/", addUser)
+  .get("/users/:id", getUser)
+  .patch("/users/:id", updateUser)
+  .delete("/users/:id", deleteUser)
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
