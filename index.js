@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 var express = require("express");
+var bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 const dbConfig = require("./config/keys");
 
@@ -36,11 +37,13 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query(
-      "UPDATE users SET name=($1) WHERE id=($2)",
-      [req.query.name, req.params.id]
+    await client.query("UPDATE users SET name=($1) WHERE id=($2)", [
+      req.body.name,
+      req.params.id
+    ]);
+    res.send(
+      `user with id = ${req.params.id} updated with name = ${req.body.name}`
     );
-    res.send("user with id = " + req.params.id + " updated");
     client.release();
   } catch (err) {
     console.error(err);
@@ -52,7 +55,7 @@ const addUser = async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query("INSERT into users(name) VALUES ($1)", [
-      req.query.name
+      req.body.name
     ]);
     res.send(result.rowCount + " users added");
     client.release();
@@ -77,6 +80,12 @@ const deleteUser = async (req, res) => {
 };
 
 express()
+  .use(bodyParser.json())
+  .use(
+    bodyParser.urlencoded({
+      extended: true
+    })
+  )
   .get("/", (req, res) => res.send("express is working"))
   .get("/users", getUsers)
   .post("/users/", addUser)
