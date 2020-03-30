@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 
+var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 express()
@@ -13,6 +14,6 @@ express()
       extended: true
     })
   )
-  .get("/", (req, res) => res.send("express is working"))
+  .use('/', indexRouter)
   .use("/users", usersRouter)
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
